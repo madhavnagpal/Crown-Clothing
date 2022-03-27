@@ -36,6 +36,7 @@ const CategoryBodyBox = styled(Box)({
   background: "white",
   opacity: "0.7",
   position: "absolute",
+  borderRadius: "2px",
 });
 
 const TitleTypography = styled(Typography)({
