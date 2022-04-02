@@ -12,6 +12,7 @@ const Navigation = () => (
       <NavLinksContainer>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/shop">Shop</NavLink>
+        <NavLink to="/sign-in">Sign In</NavLink>
       </NavLinksContainer>
     </NavigationBar>
     <Outlet />
