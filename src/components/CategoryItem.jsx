@@ -72,10 +72,10 @@ const CategoryBox = styled(Box)({
       opacity: "0.9",
     },
   },
-  "&:first-child": {
-    marginRight: "7.5px",
-  },
-  "&:last-child": {
-    marginLeft: "7.5px",
-  },
+  // "&:first-child": {
+  //   marginRight: "7.5px",
+  // },
+  // "&:last-child": {
+  //   marginLeft: "7.5px",
+  // },
 });

@@ -1,23 +1,40 @@
+import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { Box } from "@mui/material";
 import styled from "@emotion/styled/macro";
-import { ReactComponent as CrownLogo } from "../assets/crown.svg";
 
-const Navigation = () => (
-  <>
-    <NavigationBar>
-      <LogoLink to="/">
-        <CrownLogo />
-      </LogoLink>
-      <NavLinksContainer>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/shop">Shop</NavLink>
-        <NavLink to="/auth">Sign In</NavLink>
-      </NavLinksContainer>
-    </NavigationBar>
-    <Outlet />
-  </>
-);
+import { ReactComponent as CrownLogo } from "../assets/crown.svg";
+import { UserContext } from "../contexts/user.context";
+import { signOutUser } from "../utils/firebase/firebase.utils";
+
+const Navigation = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const onSignOut = async () => {
+    await signOutUser();
+    setCurrentUser(null);
+  };
+
+  return (
+    <>
+      <NavigationBar>
+        <LogoLink to="/">
+          <CrownLogo />
+        </LogoLink>
+        <NavLinksContainer>
+          <StyledLink to="/">Home</StyledLink>
+
+          {currentUser ? (
+            <StyledBox onClick={onSignOut}>Sign Out</StyledBox>
+          ) : (
+            <StyledLink to="/auth">Sign In</StyledLink>
+          )}
+        </NavLinksContainer>
+      </NavigationBar>
+      <Outlet />
+    </>
+  );
+};
 
 export default Navigation;
 
@@ -43,7 +60,12 @@ const NavLinksContainer = styled(Box)({
   justifyContent: "flex-end",
 });
 
-const NavLink = styled(Link)({
+const StyledLink = styled(Link)({
+  padding: "10px 15px",
+  cursor: "pointer",
+});
+
+const StyledBox = styled(Box)({
   padding: "10px 15px",
   cursor: "pointer",
 });
