@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Box, Typography, Chip } from "@mui/material";
 import styled from "@emotion/styled/macro";
 
@@ -9,7 +9,6 @@ import {
 
 import FormInput from "./FormInput";
 import Button from "./Button";
-import { UserContext } from "../contexts/user.context";
 
 const defaultFormFields = {
   displayName: "",
@@ -22,8 +21,6 @@ const SignUp = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [error, setError] = useState("");
   const { displayName, email, password, confirmPassword } = formFields;
-
-  const { setCurrentUser } = useContext(UserContext);
 
   const onChange = (event) => {
     const { value, name } = event.target;
@@ -44,7 +41,6 @@ const SignUp = () => {
         email,
         password
       );
-      setCurrentUser(user);
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
