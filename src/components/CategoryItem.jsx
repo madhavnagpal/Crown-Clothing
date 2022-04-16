@@ -64,18 +64,12 @@ const CategoryBox = styled(Box)({
   overflow: "hidden",
   "&:hover": {
     cursor: "pointer",
-    [`${BackgroundImageBox}`]: {
+    [BackgroundImageBox]: {
       transform: "scale(1.1)",
       transition: "transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
     },
-    [`${CategoryBodyBox}`]: {
+    [CategoryBodyBox]: {
       opacity: "0.9",
     },
   },
-  // "&:first-child": {
-  //   marginRight: "7.5px",
-  // },
-  // "&:last-child": {
-  //   marginLeft: "7.5px",
-  // },
 });

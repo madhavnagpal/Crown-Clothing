@@ -1,14 +1,24 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { Box } from "@mui/material";
 import styled from "@emotion/styled/macro";
 
-import { ReactComponent as CrownLogo } from "../assets/crown.svg";
+import CartIcon from "../components/CartIcon";
+import CartDropdown from "../components/CartDropdown";
 import { UserContext } from "../contexts/user.context";
 import { signOutUser } from "../utils/firebase/firebase.utils";
+import { ReactComponent as CrownLogo } from "../assets/crown.svg";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+  const [cartDropdownAnchorEl, setCartDropdownAnchorEl] = useState(null);
+
+  const onCartDropdownOpen = (event) => {
+    console.log("on open click", event.currentTarget);
+    setCartDropdownAnchorEl(event.currentTarget);
+  };
+
+  const onCartDropdownClose = () => setCartDropdownAnchorEl(null);
 
   return (
     <>
@@ -18,13 +28,19 @@ const Navigation = () => {
         </LogoLink>
         <NavLinksContainer>
           <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="/shop">Shop</StyledLink>
 
           {currentUser ? (
             <StyledBox onClick={signOutUser}>Sign Out</StyledBox>
           ) : (
             <StyledLink to="/auth">Sign In</StyledLink>
           )}
+          <CartIcon onClick={onCartDropdownOpen} />
         </NavLinksContainer>
+        <CartDropdown
+          anchorEl={cartDropdownAnchorEl}
+          onClose={onCartDropdownClose}
+        />
       </NavigationBar>
       <Outlet />
     </>
