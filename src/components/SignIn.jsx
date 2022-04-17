@@ -14,7 +14,7 @@ import Button from "../components/Button";
 import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
-} from "../utils/firebase/firebase.utils";
+} from "../utils/firebase.utils";
 
 const defaultFormFields = {
   email: "",

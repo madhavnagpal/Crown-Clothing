@@ -5,7 +5,7 @@ import styled from "@emotion/styled/macro";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
-} from "../utils/firebase/firebase.utils";
+} from "../utils/firebase.utils";
 
 import FormInput from "./FormInput";
 import Button from "./Button";

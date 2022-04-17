@@ -6,7 +6,7 @@ import styled from "@emotion/styled/macro";
 import CartIcon from "../components/CartIcon";
 import CartDropdown from "../components/CartDropdown";
 import { UserContext } from "../contexts/user.context";
-import { signOutUser } from "../utils/firebase/firebase.utils";
+import { signOutUser } from "../utils/firebase.utils";
 import { ReactComponent as CrownLogo } from "../assets/crown.svg";
 
 const Navigation = () => {
@@ -14,7 +14,6 @@ const Navigation = () => {
   const [cartDropdownAnchorEl, setCartDropdownAnchorEl] = useState(null);
 
   const onCartDropdownOpen = (event) => {
-    console.log("on open click", event.currentTarget);
     setCartDropdownAnchorEl(event.currentTarget);
   };
 

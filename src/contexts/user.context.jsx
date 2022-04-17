@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
-} from "../utils/firebase/firebase.utils";
+} from "../utils/firebase.utils";
 
 // Context change re-renders every consumer (component using useContext)
 export const UserContext = createContext({

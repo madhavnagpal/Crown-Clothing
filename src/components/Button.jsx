@@ -29,7 +29,7 @@ const customStyles = {
   },
 };
 
-const Button = ({ children, buttonType, ...restProps }) => (
+const Button = ({ children, buttonType = "default", ...restProps }) => (
   <StyledButton sx={{ ...customStyles[buttonType] }} {...restProps}>
     {children}
   </StyledButton>

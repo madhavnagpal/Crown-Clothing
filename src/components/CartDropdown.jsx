@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Popover } from "@mui/material";
 import styled from "@emotion/styled/macro";
 
@@ -15,6 +16,14 @@ const paperProps = {
 
 const CartDropdown = ({ anchorEl, onClose }) => {
   const { cartItems } = useContext(CartContext);
+  const cartItemEntries = Object.entries(cartItems);
+  const navigate = useNavigate();
+
+  const onCheckout = () => {
+    navigate("/checkout");
+    onClose();
+  };
+
   return (
     <Popover
       open={Boolean(anchorEl)}
@@ -27,16 +36,16 @@ const CartDropdown = ({ anchorEl, onClose }) => {
       }}
     >
       <StyledContainer>
-        {cartItems.length ? (
-          <StyledCartItems>
-            {cartItems.map((cartItem) => (
-              <CartItem key={cartItem.id} cartItem={cartItem} />
-            ))}
-          </StyledCartItems>
-        ) : (
-          <StyledEmptyMsg>no</StyledEmptyMsg>
-        )}
-        <StyledButton>Go To Checkout</StyledButton>
+        <StyledCartItems>
+          {!cartItemEntries.length && (
+            <StyledEmptyMsg>No Items added yet</StyledEmptyMsg>
+          )}
+          {cartItemEntries.map(([productId, cartItem]) => (
+            <CartItem key={productId} cartItem={cartItem} />
+          ))}
+        </StyledCartItems>
+
+        <StyledButton onClick={onCheckout}>Go To Checkout</StyledButton>
       </StyledContainer>
     </Popover>
   );
@@ -46,24 +55,33 @@ export default CartDropdown;
 
 const StyledContainer = styled("div")({
   width: "240px",
-  height: "340px",
+  height: "360px",
   display: "flex",
   flexDirection: "column",
-  padding: "20px",
+  padding: "20px 0 20px 20px",
 });
 
 const StyledEmptyMsg = styled("div")({
   fontSize: "18px",
   margin: "50px auto",
+  paddingRight: "20px",
 });
 
 const StyledCartItems = styled("div")({
   height: "240px",
   display: "flex",
   flexDirection: "column",
-  overflow: "scroll",
+  overflow: "auto",
+  "&::-webkit-scrollbar": {
+    width: "6px",
+  },
+  "&::-webkit-scrollbar-track": {},
+  "&::-webkit-scrollbar-thumb": {
+    background: "black",
+    borderRadius: "5px",
+  },
 });
 
 const StyledButton = styled(Button)({
-  marginTop: "auto",
+  margin: "auto 20px 0 0",
 });
