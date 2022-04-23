@@ -2,17 +2,24 @@ import { useContext } from "react";
 import styled from "@emotion/styled/macro";
 
 import ProductCard from "../components/ProductCard";
-import { ProductsContext } from "../contexts/products.context";
+import { CategoriesContext } from "../contexts/categories.context";
 
 const Shop = () => {
-  const { products } = useContext(ProductsContext);
+  const { categoriesMap } = useContext(CategoriesContext);
 
   return (
-    <StyledProductsContainer>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+    <>
+      {Object.keys(categoriesMap).map((title) => (
+        <div key={title}>
+          <h2>{title}</h2>
+          <StyledProductsContainer>
+            {categoriesMap[title].map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </StyledProductsContainer>
+        </div>
       ))}
-    </StyledProductsContainer>
+    </>
   );
 };
 
