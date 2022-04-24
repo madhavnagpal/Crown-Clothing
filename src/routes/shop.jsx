@@ -1,33 +1,15 @@
-import { useContext } from "react";
-import styled from "@emotion/styled/macro";
+import { Routes, Route } from "react-router-dom";
 
-import ProductCard from "../components/ProductCard";
-import { CategoriesContext } from "../contexts/categories.context";
+import CategoriesPreview from "./categories-preview";
+import Category from "./category";
 
 const Shop = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
-
   return (
-    <>
-      {Object.keys(categoriesMap).map((title) => (
-        <div key={title}>
-          <h2>{title}</h2>
-          <StyledProductsContainer>
-            {categoriesMap[title].map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </StyledProductsContainer>
-        </div>
-      ))}
-    </>
+    <Routes>
+      <Route index element={<CategoriesPreview />} />
+      <Route path=":category" element={<Category />} />
+    </Routes>
   );
 };
 
 export default Shop;
-
-const StyledProductsContainer = styled("div")({
-  display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)",
-  columnGap: "10px",
-  rowGap: "50px",
-});

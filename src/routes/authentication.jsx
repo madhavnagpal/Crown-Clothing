@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
+import styled from "@emotion/styled/macro";
+
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
-
-import styled from "@emotion/styled/macro";
 
 const Authentication = () => (
   <WrappingContainer>
