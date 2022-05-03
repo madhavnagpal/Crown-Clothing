@@ -9,7 +9,7 @@ import {
   ActionsContainer,
 } from "../components/SignUp";
 import FormInput from "../components/FormInput";
-import Button from "../components/Button";
+import Button, { BUTTON_TYPES } from "./Button/Button";
 
 import {
   signInWithGooglePopup,
@@ -86,10 +86,11 @@ const SignIn = () => {
           />
         )}
         <ActionsContainer>
-          <Button type="submit" buttonType="default">
-            Sign In
-          </Button>
-          <Button buttonType="google" onClick={signInWithGooglePopup}>
+          <Button type="submit">Sign In</Button>
+          <Button
+            buttonType={BUTTON_TYPES.GOOGLE_SIGN_IN}
+            onClick={signInWithGooglePopup}
+          >
             Sign In using Google
           </Button>
         </ActionsContainer>

@@ -8,7 +8,7 @@ import {
 } from "../utils/firebase.utils";
 
 import FormInput from "./FormInput";
-import Button from "./Button";
+import Button from "./Button/Button";
 
 const defaultFormFields = {
   displayName: "",
@@ -105,9 +105,7 @@ const SignUp = () => {
               onDelete={() => setError("")}
             />
           )}
-          <Button type="submit" buttonType="default">
-            Sign Up
-          </Button>
+          <Button type="submit">Sign Up</Button>
         </ActionsContainer>
       </StyledForm>
     </SignUpContainer>

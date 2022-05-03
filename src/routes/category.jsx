@@ -35,7 +35,7 @@ const StyledContainer = styled("div")({
 });
 
 const StyledTitle = styled("h2")({
-  fontSize: "28px",
+  fontSize: "38px",
   marginBottom: "25px",
   textAlign: "center",
 });

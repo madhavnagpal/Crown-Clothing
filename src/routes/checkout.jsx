@@ -15,7 +15,6 @@ import CheckoutItem from "../components/CheckoutItem";
 
 const Checkout = () => {
   const { cartItems, cartTotal } = useContext(CartContext);
-  console.log(cartTotal, " cartTotal");
   return (
     <StyledCheckoutContainer>
       <h1>Cart Items</h1>

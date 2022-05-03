@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "@emotion/styled/macro";
 
-import Button from "./Button";
+import Button, { BUTTON_TYPES } from "./Button/Button";
 import { CartContext } from "../contexts/cart.context";
 
 const ProductCard = ({ product }) => {
@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
         <StyledName>{name}</StyledName>
         <StyledPrice>{price}</StyledPrice>
       </StyledFooter>
-      <StyledButton buttonType="inverted" onClick={onAddToProduct}>
+      <StyledButton buttonType={BUTTON_TYPES.INVERTED} onClick={onAddToProduct}>
         Add to cart
       </StyledButton>
     </StyledContainer>

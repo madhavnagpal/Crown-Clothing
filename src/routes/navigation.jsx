@@ -3,8 +3,8 @@ import { Outlet, Link } from "react-router-dom";
 import { Box } from "@mui/material";
 import styled from "@emotion/styled/macro";
 
-import CartIcon from "../components/CartIcon";
-import CartDropdown from "../components/CartDropdown";
+import CartIcon from "../components/CartIcon/CartIcon";
+import CartDropdown from "../components/CartDropdown/CartDropdown";
 import { UserContext } from "../contexts/user.context";
 import { signOutUser } from "../utils/firebase.utils";
 import { ReactComponent as CrownLogo } from "../assets/crown.svg";
