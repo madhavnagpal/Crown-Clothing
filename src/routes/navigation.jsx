@@ -1,16 +1,17 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
 import { Box } from "@mui/material";
 import styled from "@emotion/styled/macro";
 
 import CartIcon from "../components/CartIcon/CartIcon";
 import CartDropdown from "../components/CartDropdown/CartDropdown";
-import { UserContext } from "../contexts/user.context";
 import { signOutUser } from "../utils/firebase.utils";
 import { ReactComponent as CrownLogo } from "../assets/crown.svg";
+import { selectCurrentUser } from "../store/user/user.selector";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const [cartDropdownAnchorEl, setCartDropdownAnchorEl] = useState(null);
 
   const onCartDropdownOpen = (event) => {
