@@ -1,10 +1,10 @@
 import { CATEGORIES_ACTION_TYPES } from "./category.types";
 
-export const CATEGORIES_INITIAL_STATE = {
+const CATEGORIES_INITIAL_STATE = {
   categories: [],
 };
 
-export const categoriesReducer = (
+const categoriesReducer = (
   state = CATEGORIES_INITIAL_STATE,
   action = {}
 ) => {
@@ -17,3 +17,5 @@ export const categoriesReducer = (
       return state;
   }
 };
+
+export default categoriesReducer;
