@@ -1,32 +1,18 @@
-import { cloneDeep } from "../../utils/helpers.utils";
+import produce from "immer";
 
-export const incrementItemQuantity = (prevState, item) => {
-  const updatedCartItems = cloneDeep(prevState.cartItems);
-  if (updatedCartItems[item.id]) {
-    updatedCartItems[item.id].quantity += 1;
+export const incrementItemQuantity = produce((draft, item) => {
+  if (draft.cartItems[item.id]) {
+    draft.cartItems[item.id].quantity += 1;
   } else {
-    updatedCartItems[item.id] = { ...item, quantity: 1 };
+    draft.cartItems[item.id] = { ...item, quantity: 1 };
   }
-  return {
-    cartItems: updatedCartItems,
-  };
-}
+});
 
-export const decrementItemQuantity = (prevState, itemId) => {
-  const updatedCartItems = cloneDeep(prevState.cartItems);
-  updatedCartItems[itemId].quantity -= 1;
-  if (!updatedCartItems[itemId].quantity) {
-    delete updatedCartItems[itemId];
-  }
-  return {
-    cartItems: updatedCartItems,
-  };
-}
+export const decrementItemQuantity = produce((draft, itemId) => {
+  draft.cartItems[itemId].quantity -= 1;
+  if (!draft.cartItems[itemId].quantity) delete draft.cartItems[itemId];
+});
 
-export const deleteItemFromCart = (prevState, itemId) => {
-  const updatedCartItems = cloneDeep(prevState.cartItems);
-  delete updatedCartItems[itemId];
-  return {
-    cartItems: updatedCartItems,
-  };
-}
+export const deleteItemFromCart = produce((draft, itemId) => {
+  delete draft.cartItems[itemId];
+});

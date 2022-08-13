@@ -1,15 +1,15 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "@mui/material";
+import { useSelector } from "react-redux";
 
 import CartItem from "../CartItem/CartItem";
-import { CartContext } from "../../contexts/cart.context";
 import {
   CartDropdownContainer,
   CartItems,
   EmptyMessage,
   Button,
 } from "./CartDropdown.styles";
+import { selectCartItems } from "../../store/cart/cart.selector";
 
 const paperProps = {
   sx: {
@@ -19,7 +19,7 @@ const paperProps = {
 };
 
 const CartDropdown = ({ anchorEl, onClose }) => {
-  const { cartItems } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
   const cartItemEntries = Object.entries(cartItems);
   const navigate = useNavigate();
 

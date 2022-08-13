@@ -2,8 +2,8 @@ import { TableCell, TableRow, IconButton } from "@mui/material";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import { useContext } from "react";
-import { CartContext } from "../contexts/cart.context";
+import { useDispatch } from "react-redux";
+import { incrementItemQuantity, decrementItemQuantity, deleteItemFromCart  } from "../store/cart/cart.action";
 
 const imageContainerStyles = {
   width: "23%",
@@ -17,12 +17,11 @@ const imageContainerStyles = {
 
 const CheckoutItem = ({ cartItem }) => {
   const { id, name, imageUrl, price, quantity } = cartItem;
-  const { addItemToCart, decrementItemQuantity, deleteItemFromCart } =
-    useContext(CartContext);
+  const dispatch = useDispatch();
 
-  const onAdd = () => addItemToCart(cartItem);
-  const onSubtract = () => decrementItemQuantity(id);
-  const onDelete = () => deleteItemFromCart(id);
+  const onAdd = () => dispatch(incrementItemQuantity(cartItem));
+  const onSubtract = () => dispatch(decrementItemQuantity(id));
+  const onDelete = () => dispatch(deleteItemFromCart(id));
 
   return (
     <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>

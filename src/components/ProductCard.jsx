@@ -1,14 +1,14 @@
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import styled from "@emotion/styled/macro";
 
 import Button, { BUTTON_TYPES } from "./Button/Button";
-import { CartContext } from "../contexts/cart.context";
+import { incrementItemQuantity } from "../store/cart/cart.action";
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
   const { name, imageUrl, price } = product;
-  const { addItemToCart } = useContext(CartContext);
 
-  const onAddToProduct = () => addItemToCart(product);
+  const onAddToProduct = () => dispatch(incrementItemQuantity(product));
 
   return (
     <StyledContainer>
