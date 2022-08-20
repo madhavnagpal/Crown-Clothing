@@ -1,4 +1,3 @@
-import { getCategoriesAndDocuments } from "../../utils/firebase.utils";
 import { createAction } from "../../utils/reducer.utils";
 import { CATEGORIES_ACTION_TYPES } from "./category.types";
 
@@ -11,6 +10,9 @@ export const fetchCategoriesSuccess = (categories) =>
 export const fetchCategoriesFailed = (error) =>
   createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
 
+
+/* Thunk version of adding side-effects in redux
+
 export const fetchCategoriesAsync = () => async (dispatch) => {
   dispatch(fetchCategoriesStart());
   try {
@@ -20,3 +22,5 @@ export const fetchCategoriesAsync = () => async (dispatch) => {
     dispatch(fetchCategoriesFailed(error));
   }
 }
+
+*/
