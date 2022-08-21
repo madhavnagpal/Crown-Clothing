@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   StyledForm,
@@ -10,11 +11,12 @@ import {
 } from "../components/SignUp";
 import FormInput from "../components/FormInput";
 import Button, { BUTTON_TYPES } from "./Button/Button";
-
+import { googleSignInStart, emailSignInStart } from "../store/user/user.action";
 import {
-  signInWithGooglePopup,
-  signInAuthUserWithEmailAndPassword,
-} from "../utils/firebase.utils";
+  selectCurrentUser,
+  selectIsUserSigningIn,
+  selectSignInError,
+} from "../store/user/user.selector";
 
 const defaultFormFields = {
   email: "",
@@ -28,7 +30,16 @@ const SIGN_IN_ERRORS = {
 
 const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  const signInError = useSelector(selectSignInError);
+  const currentUser = useSelector(selectCurrentUser);
+  const isUserSigningIn = useSelector(selectIsUserSigningIn);
+
+  const errorMessage =
+    signInError &&
+    (SIGN_IN_ERRORS[signInError.code] ||
+      "Error while signing in with email and password");
+
   const { email, password } = formFields;
 
   const resetFormFields = () => setFormFields(defaultFormFields);
@@ -38,20 +49,23 @@ const SignIn = () => {
     setFormFields((prevValue) => ({ ...prevValue, [name]: value }));
   };
 
-  const onSignIn = async (event) => {
-    event.preventDefault();
-    setError("");
-    try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+  const onSignIn = useCallback(
+    (event) => {
+      event.preventDefault();
+      dispatch(emailSignInStart(email, password));
+    },
+    [dispatch, email, password]
+  );
+
+  useEffect(() => {
+    if (!isUserSigningIn && currentUser) {
       resetFormFields();
-    } catch (error) {
-      const errorMessage =
-        SIGN_IN_ERRORS[error.code] ||
-        "Error while signing in with email and password";
-      console.log(error);
-      setError(errorMessage);
     }
-  };
+  }, [isUserSigningIn, currentUser]);
+
+  const onSignInWithGoogle = useCallback(() => {
+    dispatch(googleSignInStart());
+  }, [dispatch]);
 
   return (
     <SignInContainer>
@@ -78,18 +92,18 @@ const SignIn = () => {
           onChange={onChange}
           value={password}
         />
-        {error && (
+        {errorMessage && (
           <MessageChip
-            label={error}
+            label={errorMessage}
             color="error"
-            onDelete={() => setError("")}
+            // onDelete={() => setError("")}
           />
         )}
         <ActionsContainer>
           <Button type="submit">Sign In</Button>
           <Button
             buttonType={BUTTON_TYPES.GOOGLE_SIGN_IN}
-            onClick={signInWithGooglePopup}
+            onClick={onSignInWithGoogle}
           >
             Sign In using Google
           </Button>

@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
 import { Box } from "@mui/material";
 import styled from "@emotion/styled/macro";
 
 import CartIcon from "../components/CartIcon/CartIcon";
 import CartDropdown from "../components/CartDropdown/CartDropdown";
-import { signOutUser } from "../utils/firebase.utils";
 import { ReactComponent as CrownLogo } from "../assets/crown.svg";
 import { selectCurrentUser } from "../store/user/user.selector";
+import { signOutStart } from "../store/user/user.action";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
   const [cartDropdownAnchorEl, setCartDropdownAnchorEl] = useState(null);
 
   const onCartDropdownOpen = (event) => {
@@ -19,6 +20,10 @@ const Navigation = () => {
   };
 
   const onCartDropdownClose = () => setCartDropdownAnchorEl(null);
+
+  const onSignOut = useCallback(() => {
+    dispatch(signOutStart());
+  }, [dispatch])
 
   return (
     <>
@@ -31,7 +36,7 @@ const Navigation = () => {
           <StyledLink to="/shop">Shop</StyledLink>
 
           {currentUser ? (
-            <StyledBox onClick={signOutUser}>Sign Out</StyledBox>
+            <StyledBox onClick={onSignOut}>Sign Out</StyledBox>
           ) : (
             <StyledLink to="/auth">Sign In</StyledLink>
           )}
