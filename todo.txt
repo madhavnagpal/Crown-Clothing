@@ -1,3 +1,5 @@
 Problems to solve
 
-1 typescript errors are not showing
+1 code splitting
+2 intercepotors and appending of call
+- complete stripe payment

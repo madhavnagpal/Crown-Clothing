@@ -1,4 +1,4 @@
-import { CART_ACTION_TYPES } from "./cart.types.ts";
+import { CART_ACTION_TYPES } from "./cart.types";
 import { createAction } from "../../utils/reducer.utils";
 
 export const incrementItemQuantity = (payload) =>
