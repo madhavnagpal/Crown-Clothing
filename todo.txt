@@ -1,5 +1,54 @@
-Problems to solve
+Project todos
 
-1 code splitting
-2 intercepotors and appending of call
 - complete stripe payment
+
+**************************************************************************************
+Things to learn
+
+1 Js basics
+https://www.freecodecamp.org/news/top-javascript-concepts-to-know-before-learning-react/
+
+2 Deciding a folder structure for react app.
+https://www.robinwieruch.de/react-folder-structure/
+
+3 Adding es lint to my app, and set import structure
+https://dev.to/otamnitram/sorting-your-imports-correctly-in-react-213m
+
+4 Think more about why to use Typescript
+https://blog.bitsrc.io/5-strong-reasons-to-use-typescript-with-react-bc987da5d907
+
+5 Check another basic tutorial
+https://www.youtube.com/watch?v=FJDVKeh7RJI&t=4610s
+
+6 Learn about Code splitting
+https://reactjs.org/docs/code-splitting.html
+
+7 Learn hooks and practise
+https://usehooks.com/
+
+8 React docs
+https://beta.reactjs.org/
+
+9 Error Boundaries
+https://www.npmjs.com/package/react-error-boundary?activeTab=readme
+
+10 Key prop in react
+https://medium.com/swlh/understanding-the-importance-of-the-key-prop-in-react-f2b92ce65f45
+
+11 Cherry on top
+https://www.freecodecamp.org/news/best-practices-for-react/
+
+12 intercepotors and appending of call
+
+**************************************************************************************
+(Buy another course only after completing current)
+
+13 Advanced React patterns
+https://www.udemy.com/course/the-complete-guide-to-advanced-react-patterns/
+
+**************************************************************************************
+
+14 Webpack course
+
+**************************************************************************************
+
