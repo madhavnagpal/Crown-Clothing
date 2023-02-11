@@ -52,3 +52,5 @@ https://www.udemy.com/course/the-complete-guide-to-advanced-react-patterns/
 
 **************************************************************************************
 
+Custom Promise
+https://medium.com/nerd-for-tech/implement-your-own-promises-in-javascript-68ddaa6a5409
